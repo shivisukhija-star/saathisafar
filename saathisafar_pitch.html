@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SaathiSafar — Investor Pitch</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --teal: #1D9E75;
+    --teal-light: #5DCAA5;
+    --teal-pale: #9FE1CB;
+    --teal-dark: #0F6E56;
+    --teal-deep: #085041;
+    --ink: #0A0E0C;
+    --ink-2: #111714;
+    --ink-3: #192220;
+    --surface: #1A2420;
+    --surface-2: #212E2A;
+    --muted: #4A6359;
+    --text: #E8F5F1;
+    --text-2: #9BBFB5;
+    --text-3: #6A9088;
+    --amber: #F5A623;
+    --red: #E85757;
+    --white: #FFFFFF;
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-stretch: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-stretch: normal;
+    font-style: normal;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(10,14,12,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 36px; height: 36px;
+    background: var(--teal);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--teal-light); }
+
+  .nav-cta {
+    background: var(--teal);
+    color: var(--white) !important;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--teal-light) !important; color: var(--ink) !important; }
+
+  /* ── SECTIONS ── */
+  section { position: relative; }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 100px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(29,158,117,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(8,80,65,0.2) 0%, transparent 60%);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(29,158,117,0.12);
+    border: 1px solid rgba(29,158,117,0.3);
+    border-radius: 99px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--teal-pale);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-eyebrow-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-light);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.2vw, 58px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 24px;
+    font-stretch: normal;
+  }
+
+  .hero-title .accent { color: var(--teal-light); }
+
+  .hero-title .strike {
+    text-decoration: line-through;
+    color: var(--text-3);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-2);
+    line-height: 1.7;
+    margin-bottom: 40px;
+    font-weight: 300;
+    max-width: 480px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { background: var(--teal-light); color: var(--ink); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--text-2);
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid var(--surface-2);
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--teal); color: var(--teal-pale); }
+
+  /* ── HERO CARD ── */
+  .hero-card-stack {
+    position: relative;
+    height: 480px;
+  }
+
+  .hero-card {
+    position: absolute;
+    background: var(--surface);
+    border: 1px solid rgba(29,158,117,0.2);
+    border-radius: 20px;
+    padding: 24px;
+  }
+
+  .hero-card-main {
+    width: 320px;
+    top: 40px; left: 20px;
+    z-index: 3;
+    animation: float1 4s ease-in-out infinite;
+  }
+
+  .hero-card-back {
+    width: 280px;
+    top: 20px; left: 80px;
+    z-index: 1;
+    opacity: 0.5;
+    transform: rotate(3deg);
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .card-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .card-label {
+    font-size: 11px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .route-display {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 16px 0;
+    padding: 12px 16px;
+    background: var(--ink-3);
+    border-radius: 10px;
+  }
+
+  .route-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  .route-line {
+    flex: 1;
+    height: 1px;
+    background: repeating-linear-gradient(to right, var(--teal) 0px, var(--teal) 4px, transparent 4px, transparent 8px);
+  }
+
+  .route-text {
+    font-size: 12px;
+    color: var(--text-2);
+    font-weight: 500;
+  }
+
+  .rider-row {
+    display: flex;
+    gap: -8px;
+    margin: 12px 0 8px;
+  }
+
+  .rider-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--surface);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    margin-left: -6px;
+  }
+  .rider-avatar:first-child { margin-left: 0; }
+
+  .card-stat-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .card-stat {
+    flex: 1;
+    background: var(--ink-3);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .card-stat-val {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teal-light);
+  }
+
+  .card-stat-lbl {
+    font-size: 10px;
+    color: var(--text-3);
+    margin-top: 2px;
+  }
+
+  .safeswitch-badge {
+    position: absolute;
+    bottom: 60px;
+    right: -20px;
+    z-index: 5;
+    background: var(--ink-2);
+    border: 1px solid rgba(245,166,35,0.4);
+    border-radius: 12px;
+    padding: 12px 16px;
+    min-width: 200px;
+    animation: float2 4s ease-in-out infinite 1s;
+  }
+
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .safeswitch-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .safeswitch-body {
+    font-size: 11px;
+    color: var(--text-2);
+  }
+
+  .score-badge {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    z-index: 5;
+    background: rgba(29,158,117,0.15);
+    border: 1px solid rgba(29,158,117,0.4);
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-align: center;
+    animation: float3 5s ease-in-out infinite 0.5s;
+  }
+
+  @keyframes float3 {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .score-val {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--teal-light);
+  }
+
+  .score-lbl {
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── SECTION LABELS ── */
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.4vw, 44px);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 20px;
+    font-stretch: normal;
+  }
+
+  .section-sub {
+    font-size: 17px;
+    color: var(--text-2);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 560px;
+  }
+
+  /* ── PROBLEM SECTION ── */
+  #problem {
+    padding: 120px 0 100px;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .problem-stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .problem-stat {
+    background: var(--ink-2);
+    border: 1px solid var(--surface);
+    border-left: 3px solid var(--red);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    transition: transform 0.2s;
+  }
+  .problem-stat:hover { transform: translateX(4px); }
+
+  .problem-stat-num {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-stretch: normal;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .problem-stat-text {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  .problem-scenario {
+    background: var(--ink-2);
+    border: 1px solid var(--surface);
+    border-radius: 16px;
+    padding: 28px;
+  }
+
+  .scenario-time {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .scenario-notification {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--ink-3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(232,87,87,0.2);
+  }
+
+  .notif-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 13px;
+  }
+
+  .notif-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .notif-body {
+    font-size: 12px;
+    color: var(--text-3);
+  }
+
+  /* ── SOLUTION ── */
+  #solution {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, transparent, rgba(29,158,117,0.04), transparent);
+  }
+
+  .solution-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .solution-header .section-sub {
+    margin: 0 auto;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .feature-card {
+    background: var(--ink-2);
+    border: 1px solid var(--surface);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--teal);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .feature-card:hover { border-color: rgba(29,158,117,0.4); transform: translateY(-4px); }
+  .feature-card:hover::before { transform: scaleX(1); }
+
+  .feature-card.highlight {
+    background: linear-gradient(135deg, rgba(29,158,117,0.12), rgba(8,80,65,0.2));
+    border-color: rgba(29,158,117,0.4);
+    grid-column: span 1;
+  }
+
+  .feature-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: rgba(29,158,117,0.15);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+  }
+
+  .feature-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+
+  .feature-body {
+    font-size: 14px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+
+  .feature-tag {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: rgba(29,158,117,0.15);
+    color: var(--teal-pale);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── TRACTION ── */
+  #traction {
+    padding: 100px 0;
+  }
+
+  .traction-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .metric-card {
+    background: var(--ink-2);
+    border: 1px solid var(--surface);
+    border-radius: 14px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+  .metric-card:hover { border-color: rgba(29,158,117,0.4); }
+
+  .metric-val {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-stretch: normal;
+    color: var(--teal-light);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .metric-label {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
+
+  .metric-sub {
+    font-size: 12px;
+    color: var(--text-3);
+    margin-top: 4px;
+  }
+
+  .traction-text .section-sub {
+    margin-bottom: 32px;
+  }
+
+  .milestones {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .milestone {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-left: 1px solid var(--surface);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .milestone::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 22px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--teal);
+    border: 2px solid var(--ink);
+  }
+
+  .milestone-date {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    min-width: 60px;
+    padding-top: 2px;
+  }
+
+  .milestone-text {
+    font-size: 14px;
+    color: var(--text-2);
+  }
+
+  /* ── MARKET ── */
+  #market {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, transparent, rgba(8,80,65,0.08), transparent);
+  }
+
+  .market-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+    margin-top: 60px;
+  }
+
+  .market-circles {
+    position: relative;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .circle-tam {
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.08);
+    border: 1px solid rgba(29,158,117,0.2);
+    display: flex; align-items: center; justify-content: center;
+    position: absolute;
+  }
+
+  .circle-sam {
+    width: 210px; height: 210px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.12);
+    border: 1px solid rgba(29,158,117,0.35);
+    display: flex; align-items: center; justify-content: center;
+    position: absolute;
+  }
+
+  .circle-som {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(29,158,117,0.25);
+    border: 1px solid var(--teal);
+    display: flex; align-items: center; justify-content: center;
+    position: absolute;
+  }
+
+  .circle-label {
+    text-align: center;
+  }
+
+  .circle-val {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--white);
+  }
+
+  .circle-name {
+    font-size: 10px;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .circle-tam .circle-label { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); }
+  .circle-sam .circle-label { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); }
+  .circle-som .circle-label { text-align: center; }
+
+  .market-points {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .market-point {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .market-point-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(29,158,117,0.15);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .market-point-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .market-point-body {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+
+  /* ── BUSINESS MODEL ── */
+  #model {
+    padding: 100px 0;
+  }
+
+  .model-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .model-card {
+    background: var(--ink-2);
+    border: 1px solid var(--surface);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .model-card-num {
+    font-family: var(--font-display);
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--teal-deep);
+    position: absolute;
+    top: -10px; right: 16px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .model-revenue {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--teal-light);
+    margin-bottom: 4px;
+  }
+
+  .model-stream {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .model-desc {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  /* ── TEAM / WHY US ── */
+  #team {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, transparent, rgba(29,158,117,0.04), transparent);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+
+  .why-card {
+    background: var(--ink-2);
+    border: 1px solid var(--surface);
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+  .why-card:hover { border-color: rgba(29,158,117,0.35); }
+
+  .why-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: rgba(29,158,117,0.15);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .why-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .why-body {
+    font-size: 13px;
+    color: var(--text-2);
+    line-height: 1.6;
+  }
+
+  /* ── ASK ── */
+  #ask {
+    padding: 120px 0 100px;
+  }
+
+  .ask-inner {
+    background: linear-gradient(135deg, rgba(29,158,117,0.12), rgba(8,80,65,0.2));
+    border: 1px solid rgba(29,158,117,0.3);
+    border-radius: 24px;
+    padding: 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ask-inner::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(29,158,117,0.12), transparent 70%);
+  }
+
+  .ask-title {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3.4vw, 48px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-stretch: normal;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .ask-sub {
+    font-size: 17px;
+    color: var(--text-2);
+    margin-bottom: 40px;
+    font-weight: 300;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ask-use-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+    text-align: left;
+  }
+
+  .ask-use {
+    background: rgba(10,14,12,0.5);
+    border: 1px solid rgba(29,158,117,0.2);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .ask-use-pct {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--teal-light);
+    margin-bottom: 4px;
+  }
+
+  .ask-use-label {
+    font-size: 12px;
+    color: var(--text-2);
+    line-height: 1.4;
+  }
+
+  .ask-raise {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .ask-amount {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.6vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-stretch: normal;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--surface);
+    padding: 40px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--text-3);
+  }
+
+  .footer-tagline {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-2);
+  }
+
+  /* ── DIVIDER ── */
+  .teal-rule {
+    width: 48px; height: 3px;
+    background: var(--teal);
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+
+  /* ── SCROLL ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── COMPARISON ROW ── */
+  .vs-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 40px;
+    font-size: 14px;
+  }
+
+  .vs-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text-3);
+    border-bottom: 1px solid var(--surface);
+    text-transform: uppercase;
+  }
+
+  .vs-table th.us { color: var(--teal-light); }
+
+  .vs-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-2);
+    vertical-align: middle;
+  }
+
+  .vs-table tr:last-child td { border-bottom: none; }
+  .vs-table td:first-child { color: var(--text); font-weight: 500; }
+
+  .check { color: var(--teal-light); font-size: 16px; }
+  .cross { color: var(--red); font-size: 16px; }
+  .partial { color: var(--amber); font-size: 14px; }
+
+  /* ── QUOTE BLOCK ── */
+  .quote-block {
+    border-left: 3px solid var(--teal);
+    padding: 20px 28px;
+    margin: 48px 0;
+    background: var(--ink-2);
+    border-radius: 0 12px 12px 0;
+  }
+
+  .quote-text {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.4;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .quote-attr {
+    font-size: 13px;
+    color: var(--text-3);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="6" cy="7" r="3" fill="white" opacity="0.9"/>
+        <circle cx="14" cy="7" r="3" fill="white" opacity="0.9"/>
+        <circle cx="10" cy="14" r="3" fill="white" opacity="0.9"/>
+        <line x1="6" y1="10" x2="10" y2="11" stroke="white" stroke-width="1.2" opacity="0.6"/>
+        <line x1="14" y1="10" x2="10" y2="11" stroke="white" stroke-width="1.2" opacity="0.6"/>
+      </svg>
+    </div>
+    SaathiSafar
+  </a>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#solution">Solution</a></li>
+    <li><a href="#traction">Traction</a></li>
+    <li><a href="#market">Market</a></li>
+    <li><a href="#model">Model</a></li>
+    <li><a href="#ask" class="nav-cta">Investor Deck →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow reveal">
+          <span class="hero-eyebrow-dot"></span>
+          Seed Round · Urban Mobility · India
+        </div>
+        <h1 class="hero-title reveal reveal-delay-1">
+          India's <span class="strike">broken</span><br>
+          commute gets a<br>
+          <span class="accent">reliable fix.</span>
+        </h1>
+        <p class="hero-sub reveal reveal-delay-2">
+          SaathiSafar is a verified ride-pooling network that cuts commute costs by 40–60% for India's urban professionals — with a guaranteed backup if anything goes wrong.
+        </p>
+        <div class="hero-actions reveal reveal-delay-3">
+          <a href="#ask" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            View the ask
+          </a>
+          <a href="#problem" class="btn-ghost">See the problem →</a>
+        </div>
+      </div>
+
+      <div class="hero-card-stack reveal reveal-delay-2">
+        <div class="hero-card hero-card-back"></div>
+        <div class="hero-card hero-card-main">
+          <div class="card-header">
+            <div class="card-avatar" style="background:rgba(29,158,117,0.2); color:#9FE1CB;">RK</div>
+            <div>
+              <div class="card-label">Today's pool</div>
+              <div class="card-title">Rajesh K's Swift Dzire</div>
+            </div>
+          </div>
+          <div class="route-display">
+            <div class="route-dot" style="background:#1D9E75;"></div>
+            <div class="route-line"></div>
+            <div class="route-text">Sec 22 → Elante Mall</div>
+            <div class="route-dot" style="background:#F5A623;"></div>
+          </div>
+          <div style="font-size:11px; color:var(--text-3); margin-bottom:6px;">3 riders confirmed</div>
+          <div class="rider-row">
+            <div class="rider-avatar" style="background:rgba(29,158,117,0.25); color:#9FE1CB;">RK</div>
+            <div class="rider-avatar" style="background:rgba(93,202,165,0.2); color:#5DCAA5;">PS</div>
+            <div class="rider-avatar" style="background:rgba(29,158,117,0.15); color:#1D9E75;">AJ</div>
+            <div class="rider-avatar" style="background:var(--surface); color:var(--text-3);">+1</div>
+          </div>
+          <div class="card-stat-row">
+            <div class="card-stat">
+              <div class="card-stat-val">₹38</div>
+              <div class="card-stat-lbl">your share</div>
+            </div>
+            <div class="card-stat">
+              <div class="card-stat-val">22 min</div>
+              <div class="card-stat-lbl">ETA</div>
+            </div>
+            <div class="card-stat">
+              <div class="card-stat-val">8:25</div>
+              <div class="card-stat-lbl">departs</div>
+            </div>
+          </div>
+        </div>
+        <div class="safeswitch-badge">
+          <div class="safeswitch-title">⚡ SafeSwitch Active</div>
+          <div class="safeswitch-body">Backup pool ready if needed</div>
+        </div>
+        <div class="score-badge">
+          <div class="score-val">4.9</div>
+          <div class="score-lbl">SaathiScore</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="container">
+    <div class="section-eyebrow reveal">The Problem</div>
+    <div class="teal-rule reveal"></div>
+    <h2 class="section-title reveal">₹72,000 crore<br>wasted every year<br><span style="color:var(--teal-light)">commuting alone.</span></h2>
+
+    <div class="problem-grid">
+      <div class="problem-stat-block">
+        <div class="problem-stat reveal">
+          <div class="problem-stat-num">68%</div>
+          <div class="problem-stat-text">of Indian cities have zero real-time public transit data — commuters plan blind every morning</div>
+        </div>
+        <div class="problem-stat reveal reveal-delay-1">
+          <div class="problem-stat-num">₹5,200</div>
+          <div class="problem-stat-text">average monthly commute spend for a salaried professional in a Tier 1 city — often 8–12% of take-home pay</div>
+        </div>
+        <div class="problem-stat reveal reveal-delay-2">
+          <div class="problem-stat-num">31 min</div>
+          <div class="problem-stat-text">wasted daily waiting for unreliable rides or delayed public transport — 130+ hours per year, per commuter</div>
+        </div>
+        <div class="problem-stat reveal reveal-delay-3">
+          <div class="problem-stat-num">1 in 3</div>
+          <div class="problem-stat-text">urban professionals report switching to a car specifically because public transit and app cabs are too unreliable — directly worsening congestion</div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1">
+        <div class="quote-block">
+          <div class="quote-text">"I share my colony with 4 colleagues. We've been taking separate Olas to the same office for two years."</div>
+          <div class="quote-attr">— Software engineer, Pune. The problem SaathiSafar was built to solve.</div>
+        </div>
+        <div class="problem-scenario">
+          <div class="scenario-time">9:10 AM — without SaathiSafar</div>
+          <div class="scenario-notification">
+            <div class="notif-icon" style="background:rgba(232,87,87,0.15);">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5" stroke="#E85757" stroke-width="1.4"/><path d="M7 4.5v3M7 9v.5" stroke="#E85757" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <div class="notif-title">Driver cancelled</div>
+              <div class="notif-body">Your ride for 8:45 AM was cancelled</div>
+            </div>
+          </div>
+          <div class="scenario-notification">
+            <div class="notif-icon" style="background:rgba(245,166,35,0.12);">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2l1 3h3l-2.5 2 1 3L7 8.5 4.5 10l1-3L3 5h3L7 2z" stroke="#F5A623" stroke-width="1.2"/></svg>
+            </div>
+            <div>
+              <div class="notif-title">Surge pricing active</div>
+              <div class="notif-body">Estimated fare: ₹450 — 3.1× surge</div>
+            </div>
+          </div>
+          <div style="margin-top:14px; padding:12px 14px; background:rgba(29,158,117,0.06); border:1px solid rgba(29,158,117,0.2); border-radius:8px;">
+            <div style="font-size:11px; font-weight:600; color:var(--teal); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px;">With SaathiSafar</div>
+            <div style="font-size:13px; color:var(--text-2);">SafeSwitch triggered automatically. Alternate pool found. Departing 8:30 AM. ₹38.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution">
+  <div class="container">
+    <div class="solution-header">
+      <div class="section-eyebrow reveal">The Solution</div>
+      <div class="teal-rule reveal" style="margin:0 auto 28px;"></div>
+      <h2 class="section-title reveal">Not another carpool app.<br><span style="color:var(--teal-light)">Commute infrastructure.</span></h2>
+      <p class="section-sub reveal reveal-delay-1">Three things Indian carpooling has never had together: portable peer trust, recurring scheduling, and a guaranteed fallback. SaathiSafar delivers all three.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card highlight reveal">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2l1.5 4.5H17l-3.7 2.7 1.4 4.3L11 11 6.3 13.5l1.4-4.3L4 6.5h4.5L11 2z" stroke="#1D9E75" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feature-title">SaathiScore</div>
+        <div class="feature-body">A portable trust score built from Aadhaar KYC, ride history, punctuality rate, employer email, and mutual connections. Replaces the need for institutional gatekeeping — any commuter can earn trust from their own behaviour.</div>
+        <span class="feature-tag">Core differentiator</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 11h14M11 4l7 7-7 7" stroke="#1D9E75" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feature-title">SafeSwitch Guarantee</div>
+        <div class="feature-body">If a pool cancels within 90 minutes of departure, SafeSwitch auto-triggers: alternate pool → transit route → subsidised ride-hail. A ₹30 reliability credit is applied automatically. Your morning never fails — guaranteed.</div>
+        <span class="feature-tag">No competitor offers this</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="14" rx="3" stroke="#1D9E75" stroke-width="1.5"/><path d="M7 5V3M15 5V3M3 10h16" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="feature-title">Recurring Schedule</div>
+        <div class="feature-body">Set your route and timing once. The pool auto-confirms every morning. No daily rebooking, no app-checking, no friction. Designed for the 5-day weekly commute, not one-off trips.</div>
+        <span class="feature-tag">Set once, runs forever</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 20l4-4m0 0l3-7 3 7m-3-7V2" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="feature-title">WhatsApp Group Import</div>
+        <div class="feature-body">Users paste an existing colony carpool or office commuter WhatsApp group link. SaathiSafar maps members to corridors and creates a formalised, insured pool in under 3 minutes. Solves cold start immediately.</div>
+        <span class="feature-tag">Cold-start solved</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="9" r="4" stroke="#1D9E75" stroke-width="1.5"/><path d="M5 19c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/><path d="M17 12l2 2M17 15l2-2" stroke="#1D9E75" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="feature-title">Women's Safety Stack</div>
+        <div class="feature-body">Women-only pool mode, live trip sharing to a trusted contact, route deviation alert at 500m, in-app SOS with Suraksha API integration, and a verified women driver badge tier. Safety designed in — not bolted on.</div>
+        <span class="feature-tag">Largest underserved segment</span>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-3">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="4" y="6" width="14" height="10" rx="2" stroke="#1D9E75" stroke-width="1.5"/><path d="M8 6V5a3 3 0 016 0v1" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/><path d="M11 11v2" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="feature-title">Driver Reliability Deposit</div>
+        <div class="feature-body">Drivers hold ₹200–300/month in escrow. Repeated last-minute cancellations deduct from this deposit — funding the SafeSwitch guarantee. Strong reliability earns it back as a monthly bonus. Incentives aligned by design.</div>
+        <span class="feature-tag">Self-funding guarantee</span>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-display); font-size:22px; font-weight:700; color:var(--white); margin-top:64px; margin-bottom:8px;" class="reveal">How we stack up</h3>
+    <p style="font-size:14px; color:var(--text-3); margin-bottom:0;" class="reveal">Against existing solutions in the Indian market</p>
+
+    <div class="reveal" style="overflow-x:auto; margin-top:8px;">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="us">SaathiSafar</th>
+            <th>Ola / Uber</th>
+            <th>QuickRide</th>
+            <th>Informal Carpool</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Recurring daily schedule</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="partial">~</span></td><td><span class="partial">~</span></td></tr>
+          <tr><td>Guaranteed fallback if pool fails</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>Portable trust score</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>40–60% cost saving vs solo</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Women-only pool mode</td><td><span class="check">✓</span></td><td><span class="partial">~</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>WhatsApp-native, no new app</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+          <tr><td>Per-ride micro-insurance</td><td><span class="check">✓</span></td><td><span class="partial">~</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+          <tr><td>Driver reliability incentive</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section id="traction">
+  <div class="container">
+    <div class="section-eyebrow reveal">Traction</div>
+    <div class="teal-rule reveal"></div>
+    <h2 class="section-title reveal">Early numbers<br><span style="color:var(--teal-light)">that validate the thesis.</span></h2>
+
+    <div class="traction-layout">
+      <div class="metrics-grid">
+        <div class="metric-card reveal">
+          <div class="metric-val">2,400+</div>
+          <div class="metric-label">Waitlist sign-ups</div>
+          <div class="metric-sub">Across 3 cities, organic only</div>
+        </div>
+        <div class="metric-card reveal reveal-delay-1">
+          <div class="metric-val">94%</div>
+          <div class="metric-label">Weekly retention</div>
+          <div class="metric-sub">Pilot cohort, 90 days</div>
+        </div>
+        <div class="metric-card reveal reveal-delay-2">
+          <div class="metric-val">₹38</div>
+          <div class="metric-label">Avg. cost per ride</div>
+          <div class="metric-sub">vs ₹140 solo cab baseline</div>
+        </div>
+        <div class="metric-card reveal reveal-delay-3">
+          <div class="metric-val">4.8★</div>
+          <div class="metric-label">Avg. SaathiScore</div>
+          <div class="metric-sub">Pilot rider pool quality</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-val">3 min</div>
+          <div class="metric-label">Pool creation time</div>
+          <div class="metric-sub">WhatsApp group import flow</div>
+        </div>
+        <div class="metric-card reveal reveal-delay-1">
+          <div class="metric-val">₹870</div>
+          <div class="metric-label">Avg. monthly saving</div>
+          <div class="metric-sub">Per active rider, pilot data</div>
+        </div>
+      </div>
+
+      <div class="traction-text">
+        <p class="section-sub reveal">Our pilot in Chandigarh and Indore — two cities with minimal transit digitisation — showed that riders who complete 5+ rides have a 94% 90-day retention rate. The product is not a novelty; it replaces a daily habit.</p>
+
+        <div class="milestones reveal reveal-delay-1">
+          <div class="milestone">
+            <div class="milestone-date">Q1 2024</div>
+            <div class="milestone-text">Concept validation — 48 interviews across Tier 1/2 cities</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-date">Q3 2024</div>
+            <div class="milestone-text">WhatsApp MVP launched — 3 pilot corridors in Chandigarh</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-date">Q4 2024</div>
+            <div class="milestone-text">SafeSwitch v1 shipped — 0 uncovered disruptions in 60 days</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-date">Q1 2025</div>
+            <div class="milestone-text">Indore expansion — 2,400 waitlist, first B2B employer pilot</div>
+          </div>
+          <div class="milestone">
+            <div class="milestone-date">Now</div>
+            <div class="milestone-text">Raising seed to launch 5 cities and build the native app</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="container">
+    <div class="section-eyebrow reveal">Market Opportunity</div>
+    <div class="teal-rule reveal"></div>
+    <h2 class="section-title reveal">A $14B problem<br><span style="color:var(--teal-light)">with no real solution.</span></h2>
+
+    <div class="market-layout">
+      <div class="market-circles reveal">
+        <div class="circle-tam">
+          <div class="circle-label">
+            <div class="circle-val">$14B</div>
+            <div class="circle-name">TAM</div>
+          </div>
+        </div>
+        <div class="circle-sam">
+          <div class="circle-label">
+            <div class="circle-val">$3.2B</div>
+            <div class="circle-name">SAM</div>
+          </div>
+        </div>
+        <div class="circle-som">
+          <div class="circle-label">
+            <div class="circle-val" style="font-size:13px;">$180M</div>
+            <div class="circle-name" style="font-size:9px;">SOM Y3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="market-points">
+        <div class="market-point reveal">
+          <div class="market-point-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2C5.2 2 3 4.2 3 7c0 4 5 7 5 7s5-3 5-7c0-2.8-2.2-5-5-5z" stroke="#1D9E75" stroke-width="1.4"/><circle cx="8" cy="7" r="1.5" fill="#1D9E75"/></svg>
+          </div>
+          <div>
+            <div class="market-point-title">500M+ daily commuters in India</div>
+            <div class="market-point-body">The urban working population is growing at 3.4% annually, with 40% concentrated in cities outside the top 10 metros — our Tier 2 sweet spot.</div>
+          </div>
+        </div>
+        <div class="market-point reveal reveal-delay-1">
+          <div class="market-point-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="10" rx="2" stroke="#1D9E75" stroke-width="1.4"/><path d="M5 8l2 2 4-4" stroke="#1D9E75" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="market-point-title">Tier 2 cities are wide open</div>
+            <div class="market-point-body">Cities like Indore, Ludhiana, Nashik, and Coimbatore have functioning bus networks but essentially zero digital transit layer. First mover advantage is still available.</div>
+          </div>
+        </div>
+        <div class="market-point reveal reveal-delay-2">
+          <div class="market-point-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 11l4-4 3 3 5-6" stroke="#1D9E75" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="market-point-title">Ride-hail has failed the daily commuter</div>
+            <div class="market-point-body">Ola and Uber optimise for surge, not reliability. Their cancellation rates in Tier 2 cities exceed 22%. The daily commuter is an underserved segment both platforms have structurally abandoned.</div>
+          </div>
+        </div>
+        <div class="market-point reveal reveal-delay-3">
+          <div class="market-point-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="5.5" stroke="#1D9E75" stroke-width="1.4"/><path d="M8 5.5v3l2 1" stroke="#1D9E75" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="market-point-title">Tailwinds: EV infra + ONDC + UPI</div>
+            <div class="market-point-body">India's EV adoption in the 3-wheeler segment, UPI's dominance in micro-payments, and ONDC's open mobility stack all reduce our infrastructure cost and increase distribution reach over the next 24 months.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section id="model">
+  <div class="container">
+    <div class="section-eyebrow reveal">Business Model</div>
+    <div class="teal-rule reveal"></div>
+    <h2 class="section-title reveal">Three revenue streams.<br><span style="color:var(--teal-light)">All unit-positive at launch.</span></h2>
+
+    <div class="model-grid">
+      <div class="model-card reveal">
+        <div class="model-card-num">1</div>
+        <div class="model-revenue">₹6–9</div>
+        <div class="model-stream">Per-seat platform fee</div>
+        <div class="model-desc">Charged per confirmed ride per passenger, tiered by SaathiScore. At 3 riders/pool × 22 working days = ₹396–594/driver/month in platform fees. Scales linearly with ride volume. Drivers accept the fee because net earnings are still positive vs. solo driving costs.</div>
+      </div>
+      <div class="model-card reveal reveal-delay-1">
+        <div class="model-card-num">2</div>
+        <div class="model-revenue">₹5</div>
+        <div class="model-stream">Insurance commission / ride</div>
+        <div class="model-desc">Every confirmed ride auto-purchases a ₹5 lakh accidental coverage policy via API with Bajaj Allianz or ICICI Lombard. We earn a ₹5 commission per policy. This revenue stream is active from day one — it requires zero scale to be unit-positive and cannot be replicated easily by competitors without insurer relationships.</div>
+      </div>
+      <div class="model-card reveal reveal-delay-2">
+        <div class="model-card-num">3</div>
+        <div class="model-revenue">₹499/mo</div>
+        <div class="model-stream">Employer SafeCommute plan</div>
+        <div class="model-desc">B2B subscription for companies wanting to offer commute benefits. Unlocks team dashboards, CO₂ savings reports, CTC allowance integration, and subsidised ride credits for employees. Target: IT parks, SEZ clusters, and mid-size companies in Tier 1/2 with 50–500 employees on our corridors.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 48px; padding: 32px; background: var(--ink-2); border: 1px solid var(--surface); border-radius: 16px;" class="reveal">
+      <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:24px; text-align:center;">
+        <div>
+          <div style="font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--teal-light);">18 mo</div>
+          <div style="font-size:12px; color:var(--text-3); margin-top:4px;">path to contribution margin positive</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--teal-light);">₹82</div>
+          <div style="font-size:12px; color:var(--text-3); margin-top:4px;">avg. revenue per active rider/month at steady state</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--teal-light);">4.2×</div>
+          <div style="font-size:12px; color:var(--text-3); margin-top:4px;">LTV:CAC ratio projected at 12 months post-launch</div>
+        </div>
+        <div>
+          <div style="font-family:var(--font-display); font-size:28px; font-weight:800; color:var(--teal-light);">₹0</div>
+          <div style="font-size:12px; color:var(--text-3); margin-top:4px;">paid acquisition cost in pilot — 100% organic via WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="team">
+  <div class="container">
+    <div class="section-eyebrow reveal">Why Us</div>
+    <div class="teal-rule reveal"></div>
+    <h2 class="section-title reveal">Four unfair<br><span style="color:var(--teal-light)">advantages.</span></h2>
+
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 14l4-4 3 3 5-7" stroke="#1D9E75" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="why-title">Trust architecture, not just an app</div>
+          <div class="why-body">The SaathiScore compounds with every ride — creating a switching cost that pure ride-hail platforms can't replicate. A user with 50 rides and a 4.9 score isn't switching to a competitor that starts them at zero. This moat deepens automatically over time with no additional investment.</div>
+        </div>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10c0-2.8 2.2-5 5-5s5 2.2 5 5-2.2 5-5 5" stroke="#1D9E75" stroke-width="1.6" stroke-linecap="round"/><path d="M3 17c0-3.3 3.1-4.5 7-4.5" stroke="#1D9E75" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="why-title">Distribution via existing behaviour</div>
+          <div class="why-body">The WhatsApp group import doesn't just solve cold start — it means our distribution channel is the social graph our users already maintain. Every new colony carpool group that imports becomes a self-contained acquisition event. We don't buy users; we formalise existing communities.</div>
+        </div>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="3" stroke="#1D9E75" stroke-width="1.6"/><path d="M7 5V4a4 4 0 018 0v1" stroke="#1D9E75" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="why-title">Regulatory positioning, not exposure</div>
+          <div class="why-body">We structure payments as peer cost-sharing, not fares — consistent with how Indian courts have treated similar arrangements. We're simultaneously engaging MoRTH's PM Gati Shakti regulatory sandbox to position SaathiSafar as infrastructure, not a taxi aggregator. Legal risk managed from day one.</div>
+        </div>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3C6.1 3 3 6.1 3 10s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7z" stroke="#1D9E75" stroke-width="1.6"/><path d="M10 7v4l3 2" stroke="#1D9E75" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="why-title">Tier 2 cities are our home turf</div>
+          <div class="why-body">Our pilot cities — Chandigarh, Indore — are the template for 40+ cities with 500K–3M population, functional bus networks, and zero digital transit layer. We understand these markets deeply. We're not retrofitting a Bengaluru playbook. We built this for Indore first.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ASK -->
+<section id="ask">
+  <div class="container">
+    <div class="ask-inner reveal">
+      <div class="ask-raise">Seed Round</div>
+      <div class="ask-amount">Raising ₹12 Cr ($1.4M)</div>
+      <p class="ask-sub">To prove the model across 5 cities, launch the native app, and sign the first 3 employer SafeCommute contracts.</p>
+
+      <div class="ask-use-grid">
+        <div class="ask-use">
+          <div class="ask-use-pct">45%</div>
+          <div class="ask-use-label">Product & engineering — native app, SafeSwitch v2, SaathiScore ML model</div>
+        </div>
+        <div class="ask-use">
+          <div class="ask-use-pct">30%</div>
+          <div class="ask-use-label">City expansion — ops, driver onboarding, and corridor seeding in 5 cities</div>
+        </div>
+        <div class="ask-use">
+          <div class="ask-use-pct">25%</div>
+          <div class="ask-use-label">Regulatory, legal, insurance partnerships, and B2B employer sales</div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:36px; padding:20px 28px; background:rgba(10,14,12,0.5); border:1px solid rgba(29,158,117,0.2); border-radius:12px; text-align:left;">
+        <div style="font-size:12px; font-weight:600; color:var(--teal); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px;">18-Month Targets Post-Funding</div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+          <div><div style="font-family:var(--font-display); font-size:24px; font-weight:800; color:var(--white);">5 cities</div><div style="font-size:12px; color:var(--text-3);">live and operational</div></div>
+          <div><div style="font-family:var(--font-display); font-size:24px; font-weight:800; color:var(--white);">50,000</div><div style="font-size:12px; color:var(--text-3);">monthly active riders</div></div>
+          <div><div style="font-family:var(--font-display); font-size:24px; font-weight:800; color:var(--white);">₹4.1 Cr</div><div style="font-size:12px; color:var(--text-3);">annualised GMV run rate</div></div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+        <a href="mailto:invest@saathisafar.in" class="btn-primary" style="font-size:16px; padding:16px 36px;">
+          Request full deck →
+        </a>
+        <a href="#" class="btn-ghost" style="font-size:16px; padding:16px 28px;">Watch 3-min demo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-copy">© 2025 SaathiSafar Technologies Pvt. Ltd. · Chandigarh, India</div>
+      <div class="footer-tagline">The commute you actually deserve.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
